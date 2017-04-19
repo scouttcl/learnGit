@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testJAXB id="100">
+    <age>21</age>
+    <devices>
+        <device>ipad</device>
+        <device>iphone</device>
+    </devices>
+    <location>America</location>
+    <name>Bob</name>
+</testJAXB>

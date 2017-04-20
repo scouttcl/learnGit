@@ -3,6 +3,7 @@ package demo1;
 public class Test3 {
 
 	private int index;
+	private String part;
 
 	public int getIndex() {
 		return index;

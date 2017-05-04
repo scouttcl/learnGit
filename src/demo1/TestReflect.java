@@ -67,9 +67,10 @@ public class TestReflect implements Serializable {
 					+ interfaceClazzArr[i].getName());
 		}
 
+		// rule 3:create Class object with java bean class full name
+		Class<?> clazz3 = null;
 		try {
-			// rule 3:create Class object with java bean class full name
-			Class<?> clazz3 = Class.forName(clazz1.getName());
+			clazz3 = Class.forName(clazz1.getName());
 
 			// get constructor Class object
 			Constructor<?>[] cons = clazz3.getConstructors();
@@ -101,5 +102,9 @@ public class TestReflect implements Serializable {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		
+//		compare 3 Class objects below
+		System.out.println("clazz1 == clazz2?"+(clazz1 == clazz2));
+		System.out.println("clazz2 == clazz3?"+(clazz2 == clazz3));
 	}
 }

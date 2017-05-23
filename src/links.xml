@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<links>
+    <link id="002">
+        <author>Li Yanhong</author>
+        <date>
+            <day>1</day>
+            <month>January</month>
+            <year>2001</year>
+        </date>
+        <description>search engine</description>
+        <text>baidu</text>
+        <url>www.baidu.com</url>
+    </link>
+    <link id="003">
+        <author>Ma Yun</author>
+        <date>
+            <day>2</day>
+            <month>January</month>
+            <year>2002</year>
+        </date>
+        <description>electricity supplier</description>
+        <text>taobao</text>
+        <url>www.taobao.com</url>
+    </link>
+<link id="004">
+<text>qq</text>
+<url>www.qq.com</url>
+<author>Ma Huateng</author>
+<date>
+<day>8</day>
+<month>September</month>
+<year>1998</year>
+</date>
+<description>weChat is populate</description>
+</link>
+</links>

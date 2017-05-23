@@ -85,7 +85,7 @@ public class Link {
 
 	public String toString() {
 		return "id=" + this.getId() + ", text=" + this.getText() + ", url="
-				+ this.getUrl() + ", author=" + this.getAuthor() + "date={"
+				+ this.getUrl() + ", author=" + this.getAuthor() + ", date={"
 				+ this.getDate() + "}, description=" + this.getDescription();
 	}
 	
@@ -99,6 +99,7 @@ public class Link {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			marshaller.marshal(link, file);
 			marshaller.marshal(link, System.out);
+			System.out.println(link.toString());
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}

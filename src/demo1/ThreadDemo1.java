@@ -20,9 +20,9 @@ public class ThreadDemo1 implements Runnable{
 	}
 
 	public static void main(String[] args) {
-		ThreadDemo1 demo1 = new ThreadDemo1("AKG");
+		ThreadDemo1 demo1 = new ThreadDemo1("AKG-");
 		Thread thread1 = new Thread(demo1);
-		ThreadDemo1 demo2 = new ThreadDemo1("Sony");
+		ThreadDemo1 demo2 = new ThreadDemo1("Sony-");
 		Thread thread2 = new Thread(demo2);
 		
 		thread1.start();

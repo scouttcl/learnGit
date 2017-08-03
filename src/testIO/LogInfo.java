@@ -1,5 +1,6 @@
 package testIO;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,18 +37,20 @@ public class LogInfo implements Serializable {
 	}
 
 	public static void main(String[] args) {
+		File file1 = new File("src/testLog.out");
+		File file2 = new File("src/testLog.txt");
 		LogInfo info = new LogInfo("Mike", "qwerty");
 		System.out.println("LogInfo object:\n" + info.toString());
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream("src/testLog.txt"));
+					new FileOutputStream(file2));
 			out.writeObject(info);
 			if (out != null) {
 				out.flush();
 				out.close();
 			}
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					"src/testLog.txt"));
+					file2));
 			try {
 				LogInfo info2 = (LogInfo) in.readObject();
 				System.out.println("from testLog.txt file:\n"

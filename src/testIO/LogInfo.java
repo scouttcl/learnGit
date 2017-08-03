@@ -16,7 +16,8 @@ public class LogInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String uid;
 	private Date logDate = new Date();
-	private transient String pwd;
+//	private transient String pwd;
+	private String pwd;
 
 	public LogInfo(String uid, String passward) {
 		this.uid = uid;
@@ -35,20 +36,21 @@ public class LogInfo implements Serializable {
 	}
 
 	public static void main(String[] args) {
-		LogInfo info = new LogInfo("Mike", "mechanics");
+		LogInfo info = new LogInfo("Mike", "qwerty");
 		System.out.println("LogInfo object:\n" + info.toString());
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(
 					new FileOutputStream("src/testLog.txt"));
 			out.writeObject(info);
 			if (out != null) {
+				out.flush();
 				out.close();
 			}
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					"src/testLog.txt"));
 			try {
 				LogInfo info2 = (LogInfo) in.readObject();
-				System.out.println("from testLog.out file:\n"
+				System.out.println("from testLog.txt file:\n"
 						+ info2.toString());
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

@@ -1,0 +1,95 @@
+package testIO;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+public class FileIODemo {
+
+	private String targetFileName;
+	private String sourceFileName;
+	private File targetFile;
+	private File sourceFile;
+
+	public FileIODemo(String sourceFileName, String targetFileName) {
+		this.sourceFileName = sourceFileName;
+		this.targetFileName = targetFileName;
+		this.sourceFile = new File(sourceFileName);
+		this.targetFile = new File(targetFileName);
+	}
+
+	public FileIODemo() {
+
+	}
+
+	public void readContent() {
+		FileInputStream fis = null;
+		BufferedReader br = null;
+		try {
+			if(this.sourceFile.isFile() && this.sourceFile.exists()){
+				fis = new FileInputStream(this.sourceFile);
+				br = new BufferedReader(new InputStreamReader(fis));
+				String str = null;
+				while((str = br.readLine()) != null){
+					System.out.println(str);
+				}
+				int content = 0;
+//				while((content = fis.read()) != -1){
+//					System.out.print(new String(new byte[]{(byte)content}));
+//				}
+			}else{
+				System.out.println("readContent: Get source file failed.");
+			}
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void writeContent() {
+		FileInputStream fis = null;
+		FileOutputStream fos = null;
+		BufferedReader br = null;
+		BufferedWriter bw = null;
+		String content = null;
+		try{
+			if(this.sourceFile.isFile() && this.sourceFile.exists()){
+				fis = new FileInputStream(this.sourceFile);
+				br = new BufferedReader(new InputStreamReader(fis));
+				fos = new FileOutputStream(this.targetFile);
+				bw = new BufferedWriter(new OutputStreamWriter(fos));
+				while((content = br.readLine()) != null){
+					bw.write(content + "\n");
+				}
+				bw.flush();
+				br.close();
+				bw.close();
+			}else{
+				System.out.println("writeContent: Get source file failed.");
+			}
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// test read file content and write to another place.
+		FileIODemo demo = new FileIODemo("src/testIO/FileIODemo.java", "src/testIO.txt");
+		demo.readContent();
+		demo.writeContent();
+	}
+
+}

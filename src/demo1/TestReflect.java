@@ -49,6 +49,16 @@ public class TestReflect implements Serializable {
 	public void setCarNo(String carNo) {
 		this.carNo = carNo;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sbdr = new StringBuilder();
+		sbdr.append("TestReflect object: ");
+		sbdr.append("name-" + this.getName() + ", ");
+		sbdr.append("city-" + this.getCity() + ", ");
+		sbdr.append("carNo-" + this.getCarNo() + ", ");
+		return sbdr.toString();
+	}
 
 	public static void main(String[] args) {
 		// rule 1:create Class object with java bean object
@@ -78,6 +88,19 @@ public class TestReflect implements Serializable {
 				System.out.print("cons[" + i + "](");
 				
 //				get constructor parameter type Class object
+//				this solution can not ensure the order of them, so user cons[i].getConstructor() is better.
+				/**
+				 * demo:
+				 * Constructor cons0 = demo.getConstructor();
+		            Constructor cons1 = demo.getConstructor(String.class);
+		            Constructor cons2 = demo.getConstructor(int.class);
+		            Constructor cons3 = demo.getConstructor(String.class,int.class);
+		             
+		            Person per1 = (Person) cons0.newInstance();
+		            Person per2 = (Person) cons1.newInstance("Rollen");
+		            Person per3 = (Person) cons2.newInstance(20);
+		            Person per4 = (Person) cons3.newInstance("Rollen", 20);
+				 */
 				Class<?>[] parameterTypes = cons[i].getParameterTypes();
 				for (int j = 0; j < parameterTypes.length; j++) {
 					if (j != parameterTypes.length - 1) {
@@ -88,9 +111,10 @@ public class TestReflect implements Serializable {
 				}
 				System.out.println(")");
 			}
-			TestReflect tr1 = (TestReflect) cons[0].newInstance();
+//			TestReflect tr1 = (TestReflect) cons[0].newInstance();
 			TestReflect tr2 = (TestReflect) cons[1].newInstance("007",
 					"London", "SD2341");
+			System.out.println(tr2.toString());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
